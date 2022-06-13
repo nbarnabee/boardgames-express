@@ -5,21 +5,21 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rappers</title>
+  <title>My Boardgames</title>
 </head>
 
 <body>
-  <h1>Current Rappers</h1>
-  <ul class="rappers">
-    <!-- "info" is referring to the array of rapper objects that will be received from the database.  
+  <h1>Boardgame Collection</h1>
+  <ul class="boardgames">
+    <!-- "info" is referring to the array of boardgame objects that will be received from the database.  
         The "for" loop will step through the array, create an HTML element for each object it finds there, and fill the element with values taken from the object. -->
     <% for (let i=0; i < info.length; i++) {%>
-      <li class="rapper">
+      <li class="boardgame">
         <span>
-          <%= info[i].stageName %>
+          <%= info[i].gameTitle %>
         </span>
         <span>
-          <%= info[i].birthName %>
+          <%= info[i].publisherName %>
         </span>
         <span>
           <%= info[i].likes %>
@@ -29,15 +29,15 @@
       </li>
       <% } %>
   </ul>
-  <h2>Add a rapper:</h2>
+  <h2>Add a game to the collection:</h2>
 
   <!-- HTML forms serve as a vehicle for packaging up and sending information to a server.  
-      In the opening tag we specify where this information is going to be sent (the route, or endpoint, in this case "/addRapper"), and the method (in this case, POST) -->
-  <form action="/addRapper" method="POST">
-    <input type="text" placeholder="Stage name" name="stageName" />
+      In the opening tag we specify where this information is going to be sent (the route, or endpoint, in this case "/addGame"), and the method (in this case, POST) -->
+  <form action="/addGame" method="POST">
+    <input type="text" placeholder="Game" name="gameTitle" />
     <!-- Information taken from the inputs will be stored as key: value pairs in request.body  
         Specifically, the value of the input's "name" attribute will be the key, and the input's value (what the user enters into the text box) will be the value -->
-    <input type="text" placeholder="Birth name" name="birthName" />
+    <input type="text" placeholder="Publisher" name="publisherName" />
     <button>Submit</button>
     <!-- Clicking the button will automatically make the request, according to the "action" and "method" specified in the opening tag of the form -->
   </form>

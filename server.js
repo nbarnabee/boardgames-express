@@ -7,7 +7,7 @@ require("dotenv").config(); // preps the environmental variables
 
 let db,
   dbConnectionStr = process.env.DB_STRING, // accesses the environmental variable
-  dbName = "rap";
+  dbName = "boardgames";
 
 // set up the connection to the database
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
@@ -26,38 +26,38 @@ app.use(express.urlencoded({ extended: true })); // these two lines allow us to 
 // Here is where we start telling the server what to listen for (the method), where to listen (the endpoint), and what to do when a request comes through (the function)
 
 app.get("/", (request, response) => {  // Within this function we are defining what happens when the server hears this request
-  db.collection("rappers").find().toArray()
-    // What this is saying is that when a GET request is made to the root directory ("/"), the server will go to the database, access the collection named "rappers," find all of the documents, convert them into an array, and then return that array
-    .then((data) => {  // "data" here refers to the array that was just returned, i.e. the array of documents from the "rappers" collection
+  db.collection("games").find().toArray()
+    // What this is saying is that when a GET request is made to the root directory ("/"), the server will go to the database, access the collection named "games," find all of the documents, convert them into an array, and then return that array
+    .then((data) => {  // "data" here refers to the array that was just returned, i.e. the array of documents from the "games" collection
       response.render("index.ejs", { info: data });
       // The server then prepares the response to the client.  It's going to send the index.ejs file, rendered into HTML.  But in order to render the file, it needs to send EJS an object containing the information that it can use to "fill in the blanks."  
-      // In this case, the server is sending EJS an object with the property "info" and the value "data" -- i.e., the array of rappers taken from the database
+      // In this case, the server is sending EJS an object with the property "info" and the value "data" -- i.e., the array of games taken from the database
       // This is why when you look in index.ejs you'll see references to "info"
     })
     .catch((error) => console.error(error));
 });
 
-app.post("/addRapper", (request, response) => {
+app.post("/addGame", (request, response) => {
   // The server is set up to listen for POST requests made to the "/addRapper" endpoint.
-  db.collection("rappers")
-    // When a request comes in, the server once again accesses the collection named "rappers" on the database
+  db.collection("games")
+    // When a request comes in, the server once again accesses the collection named "games" on the database
     .insertOne({
-      stageName: request.body.stageName,
-      birthName: request.body.birthName,
+      gameTitle: request.body.gameTitle,
+      publisherName: request.body.publisherName,
       likes: 0,
     })
     // Instead of finding data, it uses the insertOne() method and information taken from the body of the request to make a new entry
     .then((result) => {
-      console.log("Rapper added");  // The server logs this message
+      console.log("Game added");  // The server logs this message
       response.redirect("/"); // This returns the browser to the root index; in effect it forces a page refresh (which, as we now know, means a "GET" request)
     })
     .catch((error) => console.error(error));
 });
 
 app.put("/addLike", (request, response) => {
-  db.collection("rappers")
+  db.collection("games")
     .updateOne(
-      { stageName: request.body.stageNameS },
+      { gameTitle: request.body.gameTitleS },
       { $inc: { likes: 1 } }
     )
     // Using the updateOne() method, a document is located that matches the given key:value pair, and the value of its "likes" property is increased by one 
@@ -68,13 +68,13 @@ app.put("/addLike", (request, response) => {
     .catch((error) => console.error(error));
 });
 
-app.delete("/deleteRapper", (request, response) => {
-  db.collection("rappers")
-    .deleteOne({ stageName: request.body.stageNameS })
+app.delete("/deleteGame", (request, response) => {
+  db.collection("games")
+    .deleteOne({ stageName: request.body.gameTitleS })
     // The first document in the collection that has a matching key:value pair will be deleted.
     .then((result) => {
-      console.log("Rapper deleted");
-      response.json("Rapper deleted");
+      console.log("Game deleted");
+      response.json("Game deleted");
     })
     .catch((error) => console.error(error));
 });
