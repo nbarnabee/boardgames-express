@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rappers</title>
-  </head>
-  <body>
-    <h1>Current Rappers</h1>
-    <ul class="rappers">
-      <!-- "info" is referring to the array of rapper objects that will be received from the database.  
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rappers</title>
+</head>
+
+<body>
+  <h1>Current Rappers</h1>
+  <ul class="rappers">
+    <!-- "info" is referring to the array of rapper objects that will be received from the database.  
         The "for" loop will step through the array, create an HTML element for each object it finds there, and fill the element with values taken from the object. -->
-      <% for (let i=0; i < info.length; i++) {%>
+    <% for (let i=0; i < info.length; i++) {%>
       <li class="rapper">
-        <span><%= info[i].stageName %></span>
-        <span><%= info[i].birthName %></span>
-        <span><%= info[i].likes %></span>
+        <span>
+          <%= info[i].stageName %>
+        </span>
+        <span>
+          <%= info[i].birthName %>
+        </span>
+        <span>
+          <%= info[i].likes %>
+        </span>
         <button class="like" type="button">Like</button>
         <button class="delete" type="button">Delete</button>
       </li>
       <% } %>
-    </ul>
-    <h2>Add a rapper:</h2>
+  </ul>
+  <h2>Add a rapper:</h2>
 
-    <!-- The entire point of HTML forms is to have a vehicle for packaging up and sending information to a server.  
+  <!-- HTML forms serve as a vehicle for packaging up and sending information to a server.  
       In the opening tag we specify where this information is going to be sent (the route, or endpoint, in this case "/addRapper"), and the method (in this case, POST) -->
-    <form action="/addRapper" method="POST">
-      <input type="text" placeholder="Stage name" name="stageName" />
-      <!-- Information taken from the inputs will be stored as key: value pairs in request.body  
-        Specifically, the value of the input's "name" attribute will be the key, and the input's value (what the user enters) will be the value -->
-      <input type="text" placeholder="Birth name" name="birthName" />
-      <button>Submit</button>
-      <!-- Clicking the button will automatically make the request, according to the "action" and "method" specified in the opening tag of the form -->
-    </form>
-    <script src="main.js"></script>
-  </body>
+  <form action="/addRapper" method="POST">
+    <input type="text" placeholder="Stage name" name="stageName" />
+    <!-- Information taken from the inputs will be stored as key: value pairs in request.body  
+        Specifically, the value of the input's "name" attribute will be the key, and the input's value (what the user enters into the text box) will be the value -->
+    <input type="text" placeholder="Birth name" name="birthName" />
+    <button>Submit</button>
+    <!-- Clicking the button will automatically make the request, according to the "action" and "method" specified in the opening tag of the form -->
+  </form>
+  <script src="main.js"></script>
+</body>
+
 </html>
