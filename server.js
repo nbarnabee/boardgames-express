@@ -55,9 +55,10 @@ app.post("/addGame", (request, response) => {
 });
 
 app.put("/addLike", (request, response) => {
+  console.log(request.body.gameTitle);
   db.collection("games")
     .updateOne(
-      { gameTitle: request.body.gameTitleS },
+      { gameTitle: request.body.gameTitle },
       { $inc: { likes: 1 } }
     )
     // Using the updateOne() method, a document is located that matches the given key:value pair, and the value of its "likes" property is increased by one 
