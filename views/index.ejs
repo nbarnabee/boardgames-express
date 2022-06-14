@@ -17,8 +17,24 @@
         <span><%= info[i].title %></span>
         <span><%= info[i].publisher %></span>
         <span><%= info[i].likes %></span>
-        <button class="like" type="button">Like</button>
-        <button class="delete" type="button">Delete</button>
+        <form action="/addLike" method="put" style="display: inline">
+          <input type="hidden" name="gameTitleS" value="<%= info[i].title %>" />
+          <input
+            type="image"
+            style="height: 16px; width: 16px"
+            src="thumbs-up-solid.svg"
+            alt="like"
+          />
+        </form>
+        <form action="/deleteGame" method="delete" style="display: inline">
+          <input type="hidden" name="gameTitleS" value="<%= info[i].title %>" />
+          <input
+            type="image"
+            style="height: 16px; width: 16px"
+            src="trash-can-solid.svg"
+            alt="delete"
+          />
+        </form>
       </li>
       <% } %>
     </ul>
