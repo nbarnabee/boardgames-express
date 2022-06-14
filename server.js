@@ -41,7 +41,7 @@ app.get("/", (request, response) => {
 
 app.post("/addGame", (request, response) => {
   console.log(request.body);
-  // The server is set up to listen for POST requests made to the "/addRapper" endpoint.
+  // The server is set up to listen for POST requests made to the "/addGame" endpoint.
   db.collection("games")
     // When a request comes in, the server once again accesses the collection named "games" on the database
     .insertOne({
