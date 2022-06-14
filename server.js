@@ -40,8 +40,7 @@ app.get("/", (request, response) => {
 });
 
 app.post("/addGame", (request, response) => {
-  console.log(request.body);
-  // The server is set up to listen for POST requests made to the "/addRapper" endpoint.
+  // The server is set up to listen for POST requests made to the "/addGame" endpoint.
   db.collection("games")
     // When a request comes in, the server once again accesses the collection named "games" on the database
     .insertOne({
@@ -57,23 +56,24 @@ app.post("/addGame", (request, response) => {
     .catch((error) => console.error(error));
 });
 
-app.put("/addLike", (request, response) => {
+app.put(/addLike/, (request, response) => {
+  console.log(request.body);
   db.collection("games")
     .updateOne({ title: request.body.gameTitleS }, { $inc: { likes: 1 } })
     // Using the updateOne() method, a document is located that matches the given key:value pair, and the value of its "likes" property is increased by one
     .then((result) => {
-      response.json("Likes updated"); // response.json() in Express accepts an object or array (or, in this case, a string), converts it to a JSON, and sends it to the client.  Check main.js to see what the client does with it.
+      response.redirect("/"); // response.json() in Express accepts an object or array (or, in this case, a string), converts it to a JSON, and sends it to the client.  Check main.js to see what the client does with it.
     })
     .catch((error) => console.error(error));
 });
 
-app.delete("/deleteGame", (request, response) => {
+app.delete(/deleteGame/, (request, response) => {
   db.collection("games")
     .deleteOne({ title: request.body.gameTitleS })
     // The first document in the collection that has a matching key:value pair will be deleted.
     .then((result) => {
       console.log(result);
-      response.json("Game deleted");
+      response.redirect("/");
     })
     .catch((error) => console.error(error));
 });
