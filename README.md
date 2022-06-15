@@ -1,5 +1,5 @@
 # boardgames-express
-A reskinned and heavily commented version of Leon Noel's rap names repo, featuring in ...
+A heavily commented reskin of Leon Noel's rap names repo, featured in my blogpost (link to follow).
 
 The source material can be found here: [rap-names-express](https://github.com/100devs/rap-names-express)
 
