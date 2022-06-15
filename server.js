@@ -3,6 +3,8 @@ const app = express(); // these first two lines are the standard way to set up e
 const PORT = 5000;
 const MongoClient = require("mongodb").MongoClient; // sets up how we talk to MongoDB
 require("dotenv").config(); // preps the environmental variables
+// note that if the .env file was elsewhere, e.g. inside a folder, we'd have to specify the path within the config() method
+// for instance: require("dotenv").config({path: "./config/.env"});
 
 let db,
   dbConnectionStr = process.env.DB_STRING, // accesses the environmental variable
