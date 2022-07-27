@@ -18,8 +18,8 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
   }
 );
 
-app.set("view engine", "ejs"); // lets Express know that we're using ejs as a templating engine
-app.use(express.static("public")); // thanks to this line, we don't have to write custom routes to serve static files (Express will serve them automatically)
+app.set("view engine", "ejs"); // lets Express know that we're using ejs as a templating engine and tells it to look for ejs files in the /views folder
+app.use(express.static("public")); // thanks to this line, we don't have to write custom routes to serve static files (Express will serve them automatically)  This is telling the server that when the index (or any other HTML/EJS file) tries to access any other file, it should start looking from the /public directory.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // these two lines allow us to access data on the request body that is formatted as a JSON or URL-encoded (e.g., form data)
 
