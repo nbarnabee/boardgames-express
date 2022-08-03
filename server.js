@@ -29,6 +29,7 @@ app.get("/", (request, response) => {
   // Within this function we are defining what happens when the server hears this request
   db.collection("games")
     .find()
+    .sort({ likes: -1 })
     .toArray()
     // What this is saying is that when a GET request is made to the root directory ("/"), the server will go to the database, access the collection named "games," find all of the documents, convert them into an array, and then return that array
     .then((data) => {
