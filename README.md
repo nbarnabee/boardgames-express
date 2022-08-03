@@ -1,11 +1,14 @@
 # boardgames-express
+
 A heavily commented reskin of Leon Noel's rap names repo, featured in my blogpost (link to follow).
+
+Live on Heroku at [Boardgame Collection](https://boardgame-collection.herokuapp.com/)
 
 The source material can be found here: [rap-names-express](https://github.com/100devs/rap-names-express)
 
 To use this on your own computer, download the files and unzip them, or fork this repo into your own and clone it onto your machine.
 
-Open a terminal window, navigate to the file directory and enter `npm install`  You'll also need to set up your own DB and either hardcode your login credentials into the `server.js` file or create a new `.env` file and enter your connection string there.  
+Open a terminal window, navigate to the file directory and enter `npm install` You'll also need to set up your own DB and either hardcode your login credentials into the `server.js` file or create a new `.env` file and enter your connection string there.
 
 Once all that is done, simply type `npm start` in your terminal and open a browser window to `http://localhost:5000`
 
