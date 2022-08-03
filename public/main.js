@@ -10,7 +10,7 @@ likeButtons.forEach((button) => button.addEventListener("click", addLike));
 // Again, the same method is being applied to both arrays:  forEach() iterates through them and attaches an eventListener to each element
 
 async function addLike() {
-  const gTitle = this.parentNode.childNodes[1].innerText; // "this" refers to the button that was pressed. What's happening here is that the code is walking up its family tree to find the parentNode (in this case, the list element that contains the button).  Then it looks back down the tree to find a particular childNode and selects that the childNode contains.  That is the value that's being assigned to "sName"
+  const gTitle = this.parentNode.parentNode.childNodes[1].innerText; // "this" refers to the button that was pressed. What's happening here is that the code is walking up its family tree to find the parentNode (in this case, the list element that contains the button).  Then it looks back down the tree to find a particular childNode and selects that the childNode contains.  That is the value that's being assigned to "sName"
   try {
     const response = await fetch("addLike", {
       // Here we're building our fetch request.  It starts with the endpoint and continues with the contents of the request object:  basically, the information that is going to be sent to the server.
@@ -32,7 +32,7 @@ async function addLike() {
 // And everything that's happening here is exactly the same as what happened above.  Only the method and endpoint differ.
 
 async function deleteGame() {
-  const gTitle = this.parentNode.childNodes[1].innerText;
+  const gTitle = this.parentNode.parentNode.childNodes[1].innerText;
   try {
     const response = await fetch("deleteGame", {
       method: "delete",
