@@ -31,7 +31,7 @@ app.get("/", (request, response) => {
     .find()
     .sort({ likes: -1 })
     .toArray()
-    // What this is saying is that when a GET request is made to the root directory ("/"), the server will go to the database, access the collection named "games," find all of the documents, convert them into an array, and then return that array
+    // What this is saying is that when a GET request is made to the root directory ("/"), the server will go to the database, access the collection named "games," find all of the documents, sort them according to the number of likes (descending order), convert them into an array, and then return that array
     .then((data) => {
       // "data" here refers to the array that was just returned, i.e. the array of documents from the "games" collection
       response.render("index.ejs", { info: data });
