@@ -1,10 +1,9 @@
 # boardgames-express
 
-A heavily commented reskin of Leon Noel's rap names repo, featured in my blogpost (link to follow).
+A heavily commented practice project.  
 
 Live on Heroku at [Boardgame Collection](https://boardgame-collection.herokuapp.com/)
 
-The source material can be found here: [rap-names-express](https://github.com/100devs/rap-names-express)
 
 To use this on your own computer, download the files and unzip them, or fork this repo into your own and clone it onto your machine.
 
