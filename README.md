@@ -2,7 +2,6 @@
 
 A heavily commented practice project.  
 
-Live on Heroku at [Boardgame Collection](https://boardgame-collection.herokuapp.com/)
 
 
 To use this on your own computer, download the files and unzip them, or fork this repo into your own and clone it onto your machine.
